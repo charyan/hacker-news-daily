@@ -49,16 +49,16 @@ def check_time():
 
     if not file_path.exists():
         with open(file_path, "w+") as f:
-            f.write(str(now))
+            f.write(now.strftime("%Y-%m-%d"))
         return True
 
     with open(file_path, "r+") as f:
-        last = datetime.strptime(f.read().strip(), "%Y-%m-%d %H:%M:%S.%f")
+        last = datetime.strptime(f.read().strip(), "%Y-%m-%d")
         if (now - last).days < 1:
             return False
 
         f.seek(0)
-        f.write(str(now))
+        f.write(now.strftime("%Y-%m-%d"))
         return True
 
 
